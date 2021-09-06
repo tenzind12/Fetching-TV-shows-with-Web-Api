@@ -1,5 +1,7 @@
 const form = document.querySelector("#searchForm");
 const container = document.querySelector(".container");
+const quotePara = document.querySelector(".quote");
+
 
 // fetching data with api & adding the html
 const getMovieDetails = async (name) => {
@@ -18,6 +20,7 @@ form.addEventListener("submit", function (e) {
   const searchText = form.elements.query.value;
   getMovieDetails(searchText);
   form.elements.query.value = "";
+  quotePara.style.display = "none";
 });
 
 // construction of html with loop
@@ -46,14 +49,6 @@ const addToHtml = async function (showsArr) {
     }
   }
 };
-
-// const getAndAddImgs = async (shows) => {
-//   for (let result of shows) {
-//     const img = document.createElement("img");
-//     img.src = result.show.image.original;
-//     container.append(img);
-//   }
-// };
 
 const quoteContainer = document.querySelector(".quote");
 
