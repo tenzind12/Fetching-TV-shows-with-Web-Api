@@ -5,7 +5,6 @@ const container = document.querySelector(".container");
 const quoteContainer = document.querySelector(".quote");
 
 
-
 // fetching data with api & adding the html
 const getMovieDetails = async (name) => {
   try {
@@ -26,6 +25,7 @@ form.addEventListener("submit", function (e) {
   quoteContainer.style.display = "none";
 });
 
+
 // construction of html with loop
 const addToHtml = async function (showsArr) {
   for (let result of showsArr) {
@@ -38,14 +38,14 @@ const addToHtml = async function (showsArr) {
         summary = "I can't find summary on this Tv Show. :/";
       }
       const html = `
-              <div class=show-container>
-                  <a href='https://www.google.com/search?q=${
-                    result.show.name
-                  }'><img src="${src}"></a>
-                  <p>${rating ? "IMDB : " + rating : "Ratings not found"}</p>
-                  <div class="summary">${summary}</div>
-              </div>
-          `;
+          <div class=show-container>
+              <a href='https://www.google.com/search?q=${
+                result.show.name
+              }'><img src="${src}"></a>
+              <p>${rating ? "IMDB : " + rating : "Ratings not found"}</p>
+              <div class="summary">${summary}</div>
+          </div>
+      `;
       container.insertAdjacentHTML("afterend", html);
     } catch (error) {
       console.log(error.message);
