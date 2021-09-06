@@ -1,6 +1,9 @@
 const form = document.querySelector("#searchForm");
 const container = document.querySelector(".container");
-const quotePara = document.querySelector(".quote");
+
+// quote
+const quoteContainer = document.querySelector(".quote");
+
 
 
 // fetching data with api & adding the html
@@ -20,7 +23,7 @@ form.addEventListener("submit", function (e) {
   const searchText = form.elements.query.value;
   getMovieDetails(searchText);
   form.elements.query.value = "";
-  quotePara.style.display = "none";
+  quoteContainer.style.display = "none";
 });
 
 // construction of html with loop
@@ -50,18 +53,16 @@ const addToHtml = async function (showsArr) {
   }
 };
 
-const quoteContainer = document.querySelector(".quote");
 
-const getQuotes = async function () {
+// Fetching Randmom quote with api
+(async function () {
   const res = await axios.get("https://api.quotable.io/random");
   const author = res.data.author;
   const quote = res.data.content;
-  console.log(quote, author);
 
   const html = `
         <p class="quote-para">${quote} <br><span> - ${author}</span></p> 
   `;
   quoteContainer.insertAdjacentHTML("beforeend", html);
-};
-getQuotes();
+})();
 
