@@ -19,7 +19,7 @@ body {
   width: 80%;
   margin: 0 auto;
   text-align: center;
-  position: rela;
+  /* position: rela; */
 }
 
 h1 {
@@ -66,7 +66,7 @@ img {
 
 .show-container {
   text-align: center;
-  width: 80%;
+  width: 100%;
   margin: 0 auto 2em;
   overflow: hidden;
 }
@@ -77,4 +77,24 @@ img {
   overflow-y: scroll;
   padding: 2rem;
   text-align: justify;
+}
+
+/* random quote section  */
+.quote {
+  width: 80%;
+  height: 50vh;
+  color: white;
+  display: flex;
+  margin: auto;
+  place-items: center;
+  /* background: red; */
+}
+
+.quote-para {
+  line-height: 2em;
+  text-align: justify;
+}
+
+.quote-para span {
+  float: right;
 }
