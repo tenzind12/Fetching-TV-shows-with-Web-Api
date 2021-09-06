@@ -93,8 +93,10 @@ img {
 .quote-para {
   line-height: 2em;
   text-align: justify;
+  font-family: Roboto, sans-serif;
 }
 
 .quote-para span {
   float: left;
+  margin-top: inherit;
 }
