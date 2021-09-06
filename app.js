@@ -46,3 +46,27 @@ const addToHtml = async function (showsArr) {
     }
   }
 };
+
+// const getAndAddImgs = async (shows) => {
+//   for (let result of shows) {
+//     const img = document.createElement("img");
+//     img.src = result.show.image.original;
+//     container.append(img);
+//   }
+// };
+
+const quoteContainer = document.querySelector(".quote");
+
+const getQuotes = async function () {
+  const res = await axios.get("https://api.quotable.io/random");
+  const author = res.data.author;
+  const quote = res.data.content;
+  console.log(quote, author);
+
+  const html = `
+        <p class="quote-para">${quote} <br><span> - ${author}</span></p> 
+  `;
+  quoteContainer.insertAdjacentHTML("beforeend", html);
+};
+getQuotes();
+
