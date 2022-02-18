@@ -1,5 +1,5 @@
 const form = document.querySelector("#searchForm");
-const container = document.querySelector(".container");
+const movie__list = document.querySelector(".movie__list");
 
 // quote
 const quoteContainer = document.querySelector(".quote");
@@ -17,6 +17,7 @@ const getMovieDetails = async (name) => {
 };
 
 // getting user input
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const searchText = form.elements.query.value;
@@ -25,6 +26,10 @@ form.addEventListener("submit", function (e) {
   quoteContainer.style.display = "none";
 });
 
+const shortenText = (text) => {
+  if(text.length > 379) return text.slice(0,380).concat('...');
+  else return text;
+}
 
 // construction of html with loop
 const addToHtml = async function (showsArr) {
@@ -36,17 +41,20 @@ const addToHtml = async function (showsArr) {
       const rating = result.show.rating.average;
       if (!summary) {
         summary = "I can't find summary on this Tv Show. :/";
+      }else{
+        summary = shortenText(summary);
       }
       const html = `
-          <div class=show-container>
-              <a href='https://www.google.com/search?q=${
-                result.show.name
-              }'><img src="${src}"></a>
+          <div class="col-lg-4 col-sm-6 shadow-lg p-3 mb-5 rounded bg-dark bg-gradient">
+              <a href='https://www.google.com/search?q=${result.show.name}'>
+                <img src="${src}" class="img-fluid"  id='image__link'>
+              </a>
               <p>${rating ? "IMDB : " + rating : "Ratings not found"}</p>
-              <div class="summary">${summary}</div>
+              <div>${summary}</div>
           </div>
+         
       `;
-      container.insertAdjacentHTML("afterend", html);
+      movie__list.insertAdjacentHTML("beforeend", html);
     } catch (error) {
       console.log(error.message);
     }
@@ -61,7 +69,7 @@ const addToHtml = async function (showsArr) {
   const quote = res.data.content;
 
   const html = `
-        <p class="quote-para">${quote} <br><span> - ${author}</span></p> 
+        <p>${quote} <br><span> - ${author}</span></p> 
   `;
   quoteContainer.insertAdjacentHTML("beforeend", html);
 })();
