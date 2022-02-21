@@ -35,7 +35,6 @@ const shortenText = (text) => {
 const addToHtml = async function (showsArr) {
   for (let result of showsArr) {
     try {
-      // if (result.show.image.original) {
       let src = result.show.image.original;
       let summary = result.show.summary;
       const rating = result.show.rating.average;
@@ -45,12 +44,13 @@ const addToHtml = async function (showsArr) {
         summary = shortenText(summary);
       }
       const html = `
-          <div class="col-lg-4 col-sm-6 shadow-lg p-3 mb-5 rounded bg-dark bg-gradient">
+          <div class="col-lg-4 col-sm-6 shadow-lg p-3 mb-5 rounded bg-dark bg-gradient position-relative">
               <a href='https://www.google.com/search?q=${result.show.name}'>
                 <img src="${src}" class="img-fluid"  id='image__link'>
               </a>
               <p>${rating ? "IMDB : " + rating : "Ratings not found"}</p>
               <div>${summary}</div>
+              <a href="https://www.google.com/search?q=${result.show.name}" class='btn btn-link text-info'>Read more ...</a>
           </div>
          
       `;
