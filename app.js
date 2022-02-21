@@ -44,7 +44,7 @@ const addToHtml = async function (showsArr) {
         summary = shortenText(summary);
       }
       const html = `
-          <div class="col-lg-4 col-sm-6 shadow-lg p-3 mb-5 rounded bg-dark bg-gradient position-relative">
+          <div class="col-lg-4 col-sm-6 shadow-lg p-3 mb-5 rounded bg-dark bg-gradient">
               <a href='https://www.google.com/search?q=${result.show.name}'>
                 <img src="${src}" class="img-fluid"  id='image__link'>
               </a>
