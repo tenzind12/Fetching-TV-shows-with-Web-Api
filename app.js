@@ -54,7 +54,7 @@ const addToHtml = async function (showsArr) {
           </div>
          
       `;
-      movie__list.insertAdjacentHTML("beforeend", html);
+      movie__list.insertAdjacentHTML("afterend", html);
     } catch (error) {
       console.log(error.message);
     }
