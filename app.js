@@ -4,7 +4,6 @@ const movie__list = document.querySelector(".movie__list");
 // quote
 const quoteContainer = document.querySelector(".quote");
 
-
 // fetching data with api & adding the html
 const getMovieDetails = async (name) => {
   try {
@@ -27,20 +26,22 @@ form.addEventListener("submit", function (e) {
 });
 
 const shortenText = (text) => {
-  if(text.length > 379) return text.slice(0,380).concat('...');
+  if (text.length > 379) return text.slice(0, 300).concat("...");
   else return text;
-}
+};
 
 // construction of html with loop
 const addToHtml = async function (showsArr) {
   for (let result of showsArr) {
     try {
       let src = result.show.image.original;
+      let name = result.show.name;
+      console.log(name);
       let summary = result.show.summary;
       const rating = result.show.rating.average;
       if (!summary) {
         summary = "I can't find summary on this Tv Show. :/";
-      }else{
+      } else {
         summary = shortenText(summary);
       }
       const html = `
@@ -48,19 +49,21 @@ const addToHtml = async function (showsArr) {
               <a href='https://www.google.com/search?q=${result.show.name}'>
                 <img src="${src}" class="img-fluid"  id='image__link'>
               </a>
+              <h2 class="bg-danger text-center">${name}</h2>
               <p>${rating ? "IMDB : " + rating : "Ratings not found"}</p>
               <div>${summary}</div>
-              <a href="https://www.google.com/search?q=${result.show.name}" class='btn btn-link text-info'>Read more ...</a>
+              <a href="https://www.google.com/search?q=${
+                result.show.name
+              }" class='btn btn-link text-info'>Read more ...</a>
           </div>
          
       `;
-      movie__list.insertAdjacentHTML("afterend", html);
+      movie__list.insertAdjacentHTML("afterbegin", html);
     } catch (error) {
       console.log(error.message);
     }
   }
 };
-
 
 // Fetching Randmom quote with api
 (async function () {
@@ -73,4 +76,3 @@ const addToHtml = async function (showsArr) {
   `;
   quoteContainer.insertAdjacentHTML("beforeend", html);
 })();
-
